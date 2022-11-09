@@ -26,11 +26,14 @@ public class MyWebStorage implements MethodChannel.MethodCallHandler {
     this.plugin = plugin;
     channel = new MethodChannel(plugin.messenger, "com.pichillilorenzo/flutter_inappwebview_webstoragemanager");
     channel.setMethodCallHandler(this);
-    webStorageManager = WebStorage.getInstance();
   }
 
   @Override
   public void onMethodCall(MethodCall call, MethodChannel.Result result) {
+    if (webStorageManager == null) {
+      webStorageManager = WebStorage.getInstance();
+    }
+
     switch (call.method) {
       case "getOrigins":
         getOrigins(result);

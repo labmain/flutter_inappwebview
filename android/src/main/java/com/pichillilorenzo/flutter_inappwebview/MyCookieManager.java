@@ -32,11 +32,11 @@ public class MyCookieManager implements MethodChannel.MethodCallHandler {
     this.plugin = plugin;
     channel = new MethodChannel(plugin.messenger, "com.pichillilorenzo/flutter_inappwebview_cookiemanager");
     channel.setMethodCallHandler(this);
-    cookieManager = getCookieManager();
   }
 
   @Override
   public void onMethodCall(MethodCall call, MethodChannel.Result result) {
+    cookieManager = getCookieManager();
     switch (call.method) {
       case "setCookie":
         {
